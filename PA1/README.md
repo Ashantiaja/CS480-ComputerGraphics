@@ -54,3 +54,9 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 ```bash
 /usr/NX/scripts/vgl/vglrun ./Tutorial
 ```
+
+## Student Notes
+Moved the shader information into separate textfiles, they are loaded into shader.cpp.
+Line added to update for object model, specifically glm::translate. There was slight
+confusion in attempting to add translate to the model as opposed to multiplying it.
+Adding glm::translate did not yield a desirable outcome. 

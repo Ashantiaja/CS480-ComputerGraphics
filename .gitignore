@@ -1,0 +1,8 @@
+#Ignore object files and
+#Executables
+
+*.o
+./Tutorial
+
+# Directories to Ignore
+Build/
