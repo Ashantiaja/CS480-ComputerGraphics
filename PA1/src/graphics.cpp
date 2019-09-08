@@ -1,8 +1,11 @@
 #include "graphics.h"
 
+
 Graphics::Graphics()
 {
-
+ 
+  fragShaderInfo = "";
+  vertShaderInfo = "";
 }
 
 Graphics::~Graphics()
@@ -54,16 +57,17 @@ bool Graphics::Initialize(int width, int height)
     printf("Shader Failed to Initialize\n");
     return false;
   }
-
+  //std::cout << "Made it to graphics initialization" << std::endl;
   // Add the vertex shader
-  if(!m_shader->AddShader(GL_VERTEX_SHADER))
+  if(!m_shader->AddShader(GL_VERTEX_SHADER, vertShaderInfo))
   {
     printf("Vertex Shader failed to Initialize\n");
     return false;
   }
 
+
   // Add the fragment shader
-  if(!m_shader->AddShader(GL_FRAGMENT_SHADER))
+  if(!m_shader->AddShader(GL_FRAGMENT_SHADER, fragShaderInfo))
   {
     printf("Fragment Shader failed to Initialize\n");
     return false;
@@ -137,6 +141,31 @@ void Graphics::Render()
     string val = ErrorString( error );
     std::cout<< "Error initializing OpenGL! " << error << ", " << val << std::endl;
   }
+}
+
+void Graphics::addShaderInfo(GLenum ShaderType, std::string shaderInfo)
+{
+  std::cout << "graphics::addShaderInfo\n";
+  if(shaderInfo == "")
+    return;
+  // Adds vector information passed to a
+  // vector array that holds shader information
+  if(ShaderType == GL_VERTEX_SHADER) {
+
+    // vertShaders.push_back(shaderInfo);
+    std::cout << "assigning vertex info\n";
+    std::cout << vertShaderInfo.size() << std::endl;
+    std::cout << "!!\n";
+    //vertShaderInfo.assign(shaderInfo);
+    std::cout << vertShaderInfo << std::endl;
+    std::cout << "Vertex info added\n";
+  }
+  else if(ShaderType == GL_FRAGMENT_SHADER) {
+    //fragShaders.push_back(shaderInfo);
+    fragShaderInfo.assign(shaderInfo);
+    std::cout << "Fragment info added\n";
+  }
+  std::cout << "Shader Info added successfully" << std::endl;
 }
 
 std::string Graphics::ErrorString(GLenum error)

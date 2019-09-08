@@ -22,9 +22,8 @@ The makefile works as expected and must be updated with new files added in.
 
 Building:
 ```bash
-mkdir build
-cd build
-cp ../makefile .
+cd Build
+make clean
 make
 ./test
 ```

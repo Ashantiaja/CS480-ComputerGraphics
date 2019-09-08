@@ -106,3 +106,9 @@ long long Engine::GetCurrentTimeMillis()
   long long ret = t.tv_sec * 1000 + t.tv_usec / 1000;
   return ret;
 }
+
+void Engine::setShader(GLenum ShaderType, std::string shaderInfo)
+{
+  std::cout << "setShader\n";
+  m_graphics->addShaderInfo(ShaderType, shaderInfo);
+}

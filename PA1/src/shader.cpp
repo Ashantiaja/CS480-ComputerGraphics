@@ -1,6 +1,6 @@
 #include "shader.h"
 #include <fstream>
-#include <iostream>
+
 
 Shader::Shader()
 {
@@ -96,6 +96,16 @@ bool Shader::AddShader(GLenum ShaderType)
   glAttachShader(m_shaderProg, ShaderObj);
 
   return true;
+}
+
+// Add shader from given text information
+bool Shader::AddShader(GLenum ShaderType, std::string shaderInfo) {
+  if(shaderInfo == "")
+    return AddShader(ShaderType);
+
+  
+    return false;
+
 }
 
 
