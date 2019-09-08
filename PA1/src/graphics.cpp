@@ -146,6 +146,8 @@ void Graphics::Render()
 void Graphics::addShaderInfo(GLenum ShaderType, std::string shaderInfo)
 {
   std::cout << "graphics::addShaderInfo\n";
+  //fragShaderInfo = "blegh";
+  
   if(shaderInfo == "")
     return;
   // Adds vector information passed to a
@@ -154,8 +156,8 @@ void Graphics::addShaderInfo(GLenum ShaderType, std::string shaderInfo)
 
     // vertShaders.push_back(shaderInfo);
     std::cout << "assigning vertex info\n";
-    std::cout << vertShaderInfo.size() << std::endl;
-    std::cout << "!!\n";
+    vertShaderInfo.append("fdsljkajfs;k");
+    std::cout << vertShaderInfo << std::endl;
     //vertShaderInfo.assign(shaderInfo);
     std::cout << vertShaderInfo << std::endl;
     std::cout << "Vertex info added\n";

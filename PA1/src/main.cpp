@@ -63,7 +63,7 @@ int main(int argc, char **argv)
   
   // Start an engine and run it then cleanup after
   Engine *engine = new Engine("Tutorial Window Name", 800, 600);
-  std::cout << "Seting shader\n";
+
   // Put shader info into engine
   engine->setShader(GL_VERTEX_SHADER, vertShaderInfo);
   engine->setShader(GL_FRAGMENT_SHADER, fragShaderInfo);

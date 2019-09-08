@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 
 #include "graphics_headers.h"
@@ -20,14 +21,14 @@ class Graphics
     void Render();
 
     void addShaderInfo(GLenum ShaderType, std::string shaderInfo); 
-    
+
   private:
     std::string ErrorString(GLenum error);
 
     //std::vector<std::string> fragShaders;
     //std::vector<std::string> vertShaders;
-    std::string fragShaderInfo;
-    std::string vertShaderInfo;
+    string fragShaderInfo;
+    string vertShaderInfo;
 
     Camera *m_camera;
     Shader *m_shader;

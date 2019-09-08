@@ -109,6 +109,15 @@ long long Engine::GetCurrentTimeMillis()
 
 void Engine::setShader(GLenum ShaderType, std::string shaderInfo)
 {
-  std::cout << "setShader\n";
-  m_graphics->addShaderInfo(ShaderType, shaderInfo);
+  // Currently inoperable as any interaction
+  // with the strings in m_graphics cause a segmentation fault
+  //m_graphics->addShaderInfo(ShaderType, shaderInfo);
+  /*
+  if(ShaderType == GL_VERTEX_SHADER)
+    m_graphics->vertShaderInfo.assign(shaderInfo);
+  else if (ShaderType == GL_FRAGMENT_SHADER)
+    m_graphics->fragShaderInfo.assign(shaderInfo);
+  */
+  
+  
 }
