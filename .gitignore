@@ -8,5 +8,8 @@
 
 *~
 
+# Ignore Emac Editing files
+*~
+
 # Directories to Ignore
 Build/
