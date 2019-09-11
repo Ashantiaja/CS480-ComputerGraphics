@@ -19,7 +19,7 @@ endif
 CXXFLAGS=-g -Wall -std=c++0x
 
 # .o Compilation
-O_FILES=main.o camera.o engine.o graphics.o object.o shader.o window.o
+O_FILES=main.o camera.o engine.o graphics.o object.o shader.o window.o util.o
 
 # Point to includes of local directories
 INDLUDES=-I../include
@@ -49,5 +49,12 @@ shader.o: ../src/shader.cpp
 window.o: ../src/window.cpp
 	$(CC) $(CXXFLAGS) -c ../src/window.cpp -o window.o $(INDLUDES)
 
+util.o: ../src/util.cpp
+	$(CC) $(CXXFLAGS) -c ../src/util.cpp -o util.o $(INDLUDES)
+
 clean:
-	-@if rm *.o Tutorial 2>/dev/null || true; then echo "Main Removed"; else echo "No Main"; fi
+	rm -f *~
+	rm -f ../include/*~
+	rm -f ../src/*~
+	-@if rm *.o test 2>/dev/null || true; then echo "Main Removed"; else echo "No Main"; fi
+

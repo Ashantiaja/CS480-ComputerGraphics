@@ -3,7 +3,7 @@
 # Dependencies, Building, and Running
 
 ## Project Description
-The program creates a cube that spins and rotates about the origin.
+The program allows the user to change the direction of the cube and to stop and start it from spinning.
 
 ## Dependency Instructions
 For both of the operating systems to run this project installation of these three programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), and [SDL2](https://wiki.libsdl.org/Tutorials).
@@ -31,7 +31,7 @@ make
 
 Running:
 ```bash
-./test -f frag_Shader.txt -v vert_Shader.txt
+./test -f fragmentShader.txt -v vertexShader.txt
 ```
 
 ## Ubuntu.cse.unr.edu
