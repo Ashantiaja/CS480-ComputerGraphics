@@ -18,39 +18,47 @@ endif
 #Compiler Flags
 CXXFLAGS=-g -Wall -std=c++0x
 
+# Source Files
+SRCS = ../src/main.cpp ../src/camera.cpp ../src/engine.cpp ../src/graphics.cpp ../src/object.cpp ../src/shader.cpp ../src/window.cpp ../src/util.cpp
+
 # .o Compilation
-O_FILES=main.o camera.o engine.o graphics.o object.o shader.o window.o util.o
+#O_FILES=main.o camera.o engine.o graphics.o object.o shader.o window.o util.o
+O_FILES := $(patsubst ../src/%.cpp, %.o, $(SRCS))
 
 # Point to includes of local directories
-INDLUDES=-I../include
+INCLUDES=-I../include
 
 
 all: $(O_FILES)
 	$(CC) $(CXXFLAGS) -o test $(O_FILES) $(LIBS) #$(PATHI) $(PATHL)
 
-main.o: ../src/main.cpp
-	$(CC) $(CXXFLAGS) -c ../src/main.cpp -o main.o $(INDLUDES)
+# Compile .o files
+%.o: ../src/%.cpp
+	$(CC) $(CXXFLAGS) -c $< -o $@ $(INCLUDES)
 
-camera.o: ../src/camera.cpp
-	$(CC) $(CXXFLAGS) -c ../src/camera.cpp -o camera.o $(INDLUDES)
+#main.o: ../src/main.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/main.cpp -o main.o $(INCLUDES)
 
-engine.o: ../src/engine.cpp
-	$(CC) $(CXXFLAGS) -c ../src/engine.cpp -o engine.o $(INDLUDES)
+#camera.o: ../src/camera.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/camera.cpp -o camera.o $(INCLUDES)
 
-graphics.o: ../src/graphics.cpp
-	$(CC) $(CXXFLAGS) -c ../src/graphics.cpp -o graphics.o $(INDLUDES)
+#engine.o: ../src/engine.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/engine.cpp -o engine.o $(INCLUDES)
 
-object.o: ../src/object.cpp
-	$(CC) $(CXXFLAGS) -c ../src/object.cpp -o object.o $(INDLUDES)
+#graphics.o: ../src/graphics.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/graphics.cpp -o graphics.o $(INCLUDES)
 
-shader.o: ../src/shader.cpp
-	$(CC) $(CXXFLAGS) -c ../src/shader.cpp -o shader.o $(INDLUDES)
+#object.o: ../src/object.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/object.cpp -o object.o $(INCLUDES)
 
-window.o: ../src/window.cpp
-	$(CC) $(CXXFLAGS) -c ../src/window.cpp -o window.o $(INDLUDES)
+#shader.o: ../src/shader.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/shader.cpp -o shader.o $(INCLUDES)
 
-util.o: ../src/util.cpp
-	$(CC) $(CXXFLAGS) -c ../src/util.cpp -o util.o $(INDLUDES)
+#window.o: ../src/window.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/window.cpp -o window.o $(INCLUDES)
+
+#util.o: ../src/util.cpp
+#	$(CC) $(CXXFLAGS) -c ../src/util.cpp -o util.o $(INCLUDES)
 
 clean:
 	rm -f *~
