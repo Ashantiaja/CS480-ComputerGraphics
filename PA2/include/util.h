@@ -5,7 +5,7 @@
 namespace util {
 
   // Load command line arguments into file
-  void loadToFile(int, char**, std::string );
+  //void loadToFile(int, char**, std::string );
 
 
 }

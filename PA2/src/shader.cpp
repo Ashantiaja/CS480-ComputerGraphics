@@ -45,7 +45,7 @@ bool Shader::AddShader(GLenum ShaderType)
     std::string buffer = "";
     if(ShaderType == GL_VERTEX_SHADER)
       {
-	shaderFile.open("../src/vertexShader.txt");
+	shaderFile.open("../src/assets/vertexShader.txt");
 	while(!(shaderFile.eof())) {
 	  std::getline(shaderFile, buffer);
 	  s.append(buffer + "\n");
@@ -54,7 +54,7 @@ bool Shader::AddShader(GLenum ShaderType)
       }
     else if(ShaderType == GL_FRAGMENT_SHADER)
       {
-	shaderFile.open("../src/fragmentShader.txt");
+	shaderFile.open("../src/assets/fragmentShader.txt");
        	while(!(shaderFile.eof())) {
 	  std::getline(shaderFile, buffer);
 	  s.append(buffer + "\n");

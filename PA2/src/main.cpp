@@ -11,7 +11,7 @@ int main(int argc, char **argv)
   // util::loadToFile(argc, argv);
 
   // Start an engine and run it then cleanup after
-  Engine *engine = new Engine("Tutorial Window Name", 800, 600);
+  Engine *engine = new Engine("The Cube", 800, 600);
   if(!engine->Initialize())
   {
     printf("The engine failed to start.\n");

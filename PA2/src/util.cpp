@@ -5,6 +5,6 @@
 
 #include "util.h"
 
-void loadToFile(int argc, char** argv, std::string outFile) {
+/* void util::loadToFile(int argc, char** argv, std::string outFile) {
   
-}
+   } */
