@@ -2,7 +2,11 @@
 # Executables
 
 *.o
-./Tutorial
+./test
+
+# Ignore emacs temp files
+
+*~
 
 # Ignore Emac Editing files
 *~

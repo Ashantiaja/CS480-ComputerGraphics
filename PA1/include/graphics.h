@@ -2,6 +2,8 @@
 #define GRAPHICS_H
 
 #include <iostream>
+#include <vector>
+#include <string>
 using namespace std;
 
 #include "graphics_headers.h"
@@ -18,8 +20,15 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
 
+    void addShaderInfo(GLenum ShaderType, std::string shaderInfo); 
+
   private:
     std::string ErrorString(GLenum error);
+
+    //std::vector<std::string> fragShaders;
+    //std::vector<std::string> vertShaders;
+    string fragShaderInfo;
+    string vertShaderInfo;
 
     Camera *m_camera;
     Shader *m_shader;

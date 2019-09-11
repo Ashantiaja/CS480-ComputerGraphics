@@ -106,3 +106,18 @@ long long Engine::GetCurrentTimeMillis()
   long long ret = t.tv_sec * 1000 + t.tv_usec / 1000;
   return ret;
 }
+
+void Engine::setShader(GLenum ShaderType, std::string shaderInfo)
+{
+  // Currently inoperable as any interaction
+  // with the strings in m_graphics cause a segmentation fault
+  //m_graphics->addShaderInfo(ShaderType, shaderInfo);
+  /*
+  if(ShaderType == GL_VERTEX_SHADER)
+    m_graphics->vertShaderInfo.assign(shaderInfo);
+  else if (ShaderType == GL_FRAGMENT_SHADER)
+    m_graphics->fragShaderInfo.assign(shaderInfo);
+  */
+  
+  
+}

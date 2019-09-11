@@ -4,6 +4,9 @@
 #include <sys/time.h>
 #include <assert.h>
 
+#include <string>
+#include "graphics_headers.h"
+
 #include "window.h"
 #include "graphics.h"
 
@@ -18,6 +21,8 @@ class Engine
     void Keyboard();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
+
+    void setShader(GLenum ShaderType, std::string shaderInfo);
   
   private:
     // Window related variables
