@@ -104,11 +104,16 @@ bool Graphics::Initialize(int width, int height)
   glEnable(GL_DEPTH_TEST);
   glDepthFunc(GL_LESS);
 
+  // Other Init
+  paused = false;
+  runSpeed = 1;
+
   return true;
 }
 
 void Graphics::Update(unsigned int dt)
 {
+  
   // Update the object
   m_cube->Update(dt);
 }
@@ -171,3 +176,36 @@ std::string Graphics::ErrorString(GLenum error)
   }
 }
 
+// =============================
+// OTHER PUBLIC FUNCTIONS
+// ============================
+
+// Desc: Pauses all objects under Graphics instance
+void Graphics::pauseAll() {
+  paused = true;
+  m_cube->setPaused(true);
+}
+
+// Desc: Unpauses all objects
+void Graphics::unpauseAll() {
+  paused = false;
+  m_cube->setPaused(false);
+}
+
+// Desc: Returns if graphics instance is paused
+bool Graphics::isPaused() {
+  return paused;
+}
+
+void Graphics::setRunSpeed(float newSpeed) {
+  if(newSpeed == 0)
+    {
+      pauseAll();
+      return;
+    }
+  unpauseAll();
+  
+  runSpeed = newSpeed;
+  m_cube->setRotationalVelocity(runSpeed); 
+  
+}

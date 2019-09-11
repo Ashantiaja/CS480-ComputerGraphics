@@ -1,9 +1,14 @@
-# PA1: Spinning Cube
-
-# Dependencies, Building, and Running
+# PA2 : Interaction
 
 ## Project Description
-The program allows the user to change the direction of the cube and to stop and start it from spinning.
+The program allows the user to Increase or Decrease the speed of the cube or pause its movement.
+
+### Program Controls
+<kbd>&#x2191;</kbd> Up Arrow : Increases Speed
+<kbd>&#x2193</kbd> Down Arrow : Decreases Speed
+<kbd>P</kbd> P : Pauses and Unpauses Cube in place
+
+# Dependencies, Building, and Running
 
 ## Dependency Instructions
 For both of the operating systems to run this project installation of these three programs are required [GLEW](http://glew.sourceforge.net/), [GLM](http://glm.g-truc.net/0.9.7/index.html), and [SDL2](https://wiki.libsdl.org/Tutorials).
@@ -28,10 +33,10 @@ cp ../makefile .
 make
 ./test
 ```
-
+<!-- ./test -f fragmentShader.txt -v vertexShader.txt -->
 Running:
 ```bash
-./test -f fragmentShader.txt -v vertexShader.txt
+./test
 ```
 
 ## Ubuntu.cse.unr.edu
@@ -41,7 +46,4 @@ OpenGL 3.3 will run on the [ubuntu.cse.unr.edu](https://ubuntu.cse.unr.edu/) web
 ```
 
 ## Student Notes
-Moved the shader information into separate textfiles, they are loaded into shader.cpp.
-Line added to update for object model, specifically glm::translate. There was slight
-confusion in attempting to add translate to the model as opposed to multiplying it.
-Adding glm::translate did not yield a desirable outcome. 
+Added to Keyboard() function in Engine. Added functions to Object class and Graphics class to facilitate changing the object's movement.

@@ -18,7 +18,17 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
 
+    void pauseAll();
+    void unpauseAll();
+    bool isPaused();
+
+    void setRunSpeed(float);
+
   private:
+
+    bool paused;
+    float runSpeed; // 1x speed vs 2x speed for objects on screen
+    
     std::string ErrorString(GLenum error);
 
     Camera *m_camera;

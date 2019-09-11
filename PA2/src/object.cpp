@@ -69,6 +69,10 @@ Object::Object()
   glGenBuffers(1, &IB);
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IB);
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(unsigned int) * Indices.size(), &Indices[0], GL_STATIC_DRAW);
+
+  // Other / My Initializations
+  rotationalVelocity = 1;
+  isPaused = false;
 }
 
 Object::~Object()
@@ -79,14 +83,23 @@ Object::~Object()
 
 void Object::Update(unsigned int dt)
 {
-  angle += dt * M_PI/1000;
-  model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 1.0, 0.0));
-  model *= glm::translate(glm::mat4(1.0f), glm::vec3(5.0f, 1.0f, 0.0f));
-}
+  // angle += dt * M_PI/1000;
 
-glm::mat4 Object::GetModel()
-{
-  return model;
+  if(!isPaused) {
+    //angle += dt * M_PI/1000; OG Rotation speed
+    //angle += dt * M_PI/rotationalVelocity;
+    angle += rotationalVelocity *(dt * M_PI/1000);
+    
+    model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 1.0, 0.0));
+
+    // This line makes it move about the origin
+    //model *= glm::translate(glm::mat4(1.0f), glm::vec3(3.0f, 0.0f, 0.0f));
+    model *= glm::translate(glm::vec3(3.0f, 0.0f, 8.0f));
+    
+  }
+  
+
+  
 }
 
 void Object::Render()
@@ -105,4 +118,24 @@ void Object::Render()
   glDisableVertexAttribArray(0);
   glDisableVertexAttribArray(1);
 }
+
+// Desc (for personal use): Returns the model matrix of the cube?
+glm::mat4 Object::GetModel()
+{
+  return model;
+}
+
+// Desc: Read Title
+void Object::setPaused(bool pause) {
+  isPaused = pause;
+}
+
+// Desc: Read Title
+void Object::setRotationalVelocity(float newSpeed) {
+  rotationalVelocity = newSpeed;
+}
+
+
+
+
 

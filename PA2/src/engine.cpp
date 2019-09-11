@@ -57,7 +57,7 @@ void Engine::Run()
   while(m_running)
   {
     // Update the DT
-    m_DT = getDT();
+    m_DT = getDT(); //DT has to do with time 
 
     // Check the keyboard input
     while(SDL_PollEvent(&m_event) != 0)
@@ -82,11 +82,36 @@ void Engine::Keyboard()
   }
   else if (m_event.type == SDL_KEYDOWN)
   {
-    // handle key down events here
+    static float speed = 1; // Stores speed for graphics for adjustment purposes
+    switch(m_event.key.keysym.sym) {
+    case SDLK_ESCAPE:
+      m_running = false;
+      break;
+    case SDLK_p: // Pause graphics
+      if(m_graphics->isPaused())
+	m_graphics->unpauseAll();
+      else
+	m_graphics->pauseAll();
+      break;
+    case SDLK_UP: // Increase Speed
+      speed++;
+      m_graphics->setRunSpeed(speed);
+      break;
+    case SDLK_DOWN: // Decrease Speed 
+      speed--;
+      m_graphics->setRunSpeed(speed);
+      break;
+    }
+    
+    /* Old code. Now converted to Switch. See above ^ 
     if (m_event.key.keysym.sym == SDLK_ESCAPE)
     {
       m_running = false;
     }
+    // Press p to pause and unpause cube movement
+    if(m_event.key.keysym.sym == SDLK_UP)
+      {}
+    */
   }
 }
 

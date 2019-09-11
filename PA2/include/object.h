@@ -14,7 +14,14 @@ class Object
 
     glm::mat4 GetModel();
 
+    void setPaused(bool);
+    void setRotationalVelocity(float);
+    // The greater the number passed in.. the slower the object goes..
+
   private:
+    bool isPaused;
+    float rotationalVelocity;
+    
     glm::mat4 model;
     std::vector<Vertex> Vertices;
     std::vector<unsigned int> Indices;
