@@ -5,7 +5,9 @@ The program allows the user to Increase or Decrease the speed of the cube or pau
 
 ### Program Controls
 <kbd>&#x2191;</kbd> Up Arrow : Increases Speed
-<kbd>&#x2193</kbd> Down Arrow : Decreases Speed
+
+<kbd>&#x2193;</kbd> Down Arrow : Decreases Speed
+
 <kbd>P</kbd> P : Pauses and Unpauses Cube in place
 
 # Dependencies, Building, and Running
