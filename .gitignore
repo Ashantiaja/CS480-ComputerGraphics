@@ -1,8 +1,11 @@
-#Ignore object files and
-#Executables
+# Ignore object files and
+# Executables
 
 *.o
 ./Tutorial
+
+# Ignore Emac Editing files
+*~
 
 # Directories to Ignore
 Build/
