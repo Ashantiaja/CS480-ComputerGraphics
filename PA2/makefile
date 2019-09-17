@@ -11,6 +11,11 @@ else
 	LIBS=-lSDL2 -framework OpenGL -framework Cocoa -lGLEW -stdlib=libc++
 endif
 
+# Instructions for adding new files
+# Add .cpp files to SRCS
+# Make sure .h file is in include folder
+
+
 # Paths, use this to set Include directories, or library directories; uncomment in all: if used
 #PATHI=-I/usr/local/include/ 
 #PATHL=-L/usr/local/lib/
@@ -19,14 +24,15 @@ endif
 CXXFLAGS=-g -Wall -std=c++0x
 
 # Source Files
-SRCS = ../src/main.cpp ../src/camera.cpp ../src/engine.cpp ../src/graphics.cpp ../src/object.cpp ../src/shader.cpp ../src/window.cpp ../src/util.cpp
+#SRCS = ../src/main.cpp ../src/camera.cpp ../src/engine.cpp ../src/graphics.cpp ../src/object.cpp ../src/shader.cpp ../src/window.cpp ../src/util.cpp $(wildcard ../imgui/*.cpp)#../src/imgui.cpp
+SRCS = $(wildcard ../src/*.cpp)
 
 # .o Compilation
 #O_FILES=main.o camera.o engine.o graphics.o object.o shader.o window.o util.o
 O_FILES := $(patsubst ../src/%.cpp, %.o, $(SRCS))
 
 # Point to includes of local directories
-INCLUDES=-I../include
+INCLUDES=-I../include #$(wildcard ../imgui/*.h)
 
 
 all: $(O_FILES)

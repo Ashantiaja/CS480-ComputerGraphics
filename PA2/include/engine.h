@@ -7,6 +7,8 @@
 #include "window.h"
 #include "graphics.h"
 
+#include "imgui.h"
+
 class Engine
 {
   public:
@@ -20,6 +22,9 @@ class Engine
     long long GetCurrentTimeMillis();
   
   private:
+    //ImGui
+    //ImGuiIO &io;
+    
     // Window related variables
     Window *m_window;    
     string m_WINDOW_NAME;

@@ -1,20 +1,26 @@
 
 #include "engine.h"
 
-Engine::Engine(string name, int width, int height)
+
+Engine::Engine(string name, int width, int height)// : io(ImGui::GetIO())
 {
   m_WINDOW_NAME = name;
   m_WINDOW_WIDTH = width;
   m_WINDOW_HEIGHT = height;
   m_FULLSCREEN = false;
+
+  //ImGui::CreateContext();
 }
 
-Engine::Engine(string name)
+Engine::Engine(string name) // : io(ImGui::GetIO())
 {
   m_WINDOW_NAME = name;
   m_WINDOW_HEIGHT = 0;
   m_WINDOW_WIDTH = 0;
   m_FULLSCREEN = true;
+
+  //ImGui::CreateContext();
+
 }
 
 Engine::~Engine()
@@ -46,6 +52,7 @@ bool Engine::Initialize()
   // Set the time
   m_currentTimeMillis = GetCurrentTimeMillis();
 
+
   // No errors
   return true;
 }
@@ -56,6 +63,8 @@ void Engine::Run()
 
   while(m_running)
   {
+    ImGui::ShowDemoWindow(&m_running);
+    
     // Update the DT
     m_DT = getDT(); //DT has to do with time 
 
@@ -69,8 +78,13 @@ void Engine::Run()
     m_graphics->Update(m_DT);
     m_graphics->Render();
 
+    
+    //ImGui::Text("Hello, world %d", 123);
+
     // Swap to the Window
     m_window->Swap();
+
+
   }
 }
 
