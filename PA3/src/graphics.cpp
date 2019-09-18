@@ -46,6 +46,7 @@ bool Graphics::Initialize(int width, int height)
 
   // Create the object
   m_cube = new Object();
+  m_moon = new Satellite(m_cube);
 
   // Set up the shaders
   m_shader = new Shader();
@@ -108,6 +109,8 @@ bool Graphics::Initialize(int width, int height)
   paused = false;
   runSpeed = 1;
 
+  //m_moon->setOrbit(glm::vec3(0.0, 4.0, 0.0), glm::vec3(1.0f, 1.0f, 0.0f));
+
   return true;
 }
 
@@ -116,6 +119,8 @@ void Graphics::Update(unsigned int dt)
   
   // Update the object
   m_cube->Update(dt);
+
+  m_moon->Update(dt);
 }
 
 void Graphics::Render()
@@ -131,9 +136,19 @@ void Graphics::Render()
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView())); 
 
-  // Render the object
-  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()));
+  
+  // Render the objects
+
+  //std::vector<glm::mat4> matrices;
+  const  GLfloat* modelMatrices = glm::value_ptr(m_moon->GetModel());
+  
+  m_moon->Render();
+  //glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()) );
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, modelMatrices );
+
+  modelMatrices = glm::value_ptr(m_cube->GetModel());
   m_cube->Render();
+  glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, modelMatrices );
 
   // Get any errors from OpenGL
   auto error = glGetError();

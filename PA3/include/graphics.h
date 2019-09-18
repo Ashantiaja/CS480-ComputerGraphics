@@ -2,12 +2,14 @@
 #define GRAPHICS_H
 
 #include <iostream>
+#include <vector>
 using namespace std;
 
 #include "graphics_headers.h"
 #include "camera.h"
 #include "shader.h"
 #include "object.h"
+#include "satellite.h"
 
 class Graphics
 {
@@ -39,6 +41,7 @@ class Graphics
     GLint m_modelMatrix;
 
     Object *m_cube;
+    Satellite *m_moon;
 };
 
 #endif /* GRAPHICS_H */

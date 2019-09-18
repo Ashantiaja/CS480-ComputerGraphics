@@ -73,6 +73,7 @@ Object::Object()
   // Other / My Initializations
   rotationalVelocity = 1;
   isPaused = false;
+  setOrbit();
 }
 
 Object::~Object()
@@ -83,21 +84,14 @@ Object::~Object()
 
 void Object::Update(unsigned int dt)
 {
-  // angle += dt * M_PI/1000;
-
-  if(!isPaused) {
-    //angle += dt * M_PI/1000; OG Rotation speed
-    //angle += dt * M_PI/rotationalVelocity;
-    angle += rotationalVelocity *(dt * M_PI/1000);
+  //angle += dt * M_PI/1000; OG Rotation speed
+  //angle += dt * M_PI/rotationalVelocity;
+  angle += rotationalVelocity * (dt * M_PI/1000);
     
-    model = glm::rotate(glm::mat4(1.0f), (angle), glm::vec3(0.0, 1.0, 0.0));
-
-    // This line makes it move about the origin
-    //model *= glm::translate(glm::mat4(1.0f), glm::vec3(3.0f, 0.0f, 0.0f));
-    model *= glm::translate(glm::vec3(3.0f, 0.0f, 8.0f));
-    
-  }
-  
+  model = glm::rotate(glm::mat4(1.0f), angle, origin);
+  model *= glm::translate(offset);
+  // This line makes it move about the origin
+  //model *= glm::translate(glm::mat4(1.0f), glm::vec3(3.0f, 0.0f, 0.0f));
 
   
 }
@@ -127,7 +121,11 @@ glm::mat4 Object::GetModel()
 
 // Desc: Read Title
 void Object::setPaused(bool pause) {
-  isPaused = pause;
+
+  if(pause)
+    rotationalVelocity = 1;
+  else
+    rotationalVelocity = 0;
 }
 
 // Desc: Read Title
@@ -135,7 +133,11 @@ void Object::setRotationalVelocity(float newSpeed) {
   rotationalVelocity = newSpeed;
 }
 
+// Sets up variables to movement of this object
+void Object::setOrbit(glm::vec3 origin, glm::vec3 offset) {
+  this->origin = origin;
+  this->offset = offset;
 
-
+}
 
 
