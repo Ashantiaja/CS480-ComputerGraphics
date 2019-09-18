@@ -6,6 +6,8 @@
 
 class Object
 {
+  // Not Ideal, but change later
+  friend class Graphics;
   public:
     Object();
     ~Object();
@@ -14,8 +16,13 @@ class Object
 
     glm::mat4 GetModel();
 
+    void setScale(float sc = 1.0f);
     void setPaused(bool);
     void setRotationalVelocity(float);
+    float getRotationalVelocity();
+    void reverseRotation();
+    void increaseSpeed();
+    void decreaseSpeed();
     // The greater the number passed in.. the slower the object goes..
     void setOrbit(glm::vec3 origin = glm::vec3(0.0, 1.0, 0.0)		\
 		  , glm::vec3 offset = glm::vec3(3.0f, 0.0f, 0.0f));
@@ -24,6 +31,8 @@ class Object
   protected:
     bool isPaused; // remove later.
     float rotationalVelocity;
+    float oldVelocity;
+    glm::vec3 scale;
     glm::vec3 origin;
     glm::vec3 offset;
 					       

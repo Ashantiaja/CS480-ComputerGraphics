@@ -64,10 +64,13 @@ void Engine::Run()
     // Update the DT
     m_DT = getDT(); //DT has to do with time 
 
+
+    
     // Check the keyboard input
     while(SDL_PollEvent(&m_event) != 0)
     {
       Keyboard();
+      Mouse();
     }
 
     // Update and render the graphics
@@ -89,24 +92,45 @@ void Engine::Keyboard()
   }
   else if (m_event.type == SDL_KEYDOWN)
   {
-    static float speed = 1; // Stores speed for graphics for adjustment purposes
     switch(m_event.key.keysym.sym) {
     case SDLK_ESCAPE:
       m_running = false;
       break;
-    case SDLK_p: // Pause graphics
-      if(m_graphics->isPaused())
-	m_graphics->unpauseAll();
+    case SDLK_x: // Go all
+      m_graphics->unpauseAll();
+      break;
+    case SDLK_z: // Stop all
+      m_graphics->pauseAll();
+      break;
+    case SDLK_w: // Increase speed of planet
+      m_graphics->m_cube->increaseSpeed();
+      break;
+    case SDLK_s: // Decrease speed of planet
+      m_graphics->m_cube->decreaseSpeed();
+      break;
+    case SDLK_d: // Reverse Direction of planet
+      m_graphics->m_cube->reverseRotation();
+      break;
+    case SDLK_a: //Start/Stop planet
+      if(m_graphics->m_cube->getRotationalVelocity() != 0) 
+	m_graphics->m_cube->setPaused(true);
       else
-	m_graphics->pauseAll();
+	m_graphics->m_cube->setPaused(false);
       break;
-    case SDLK_UP: // Increase Speed
-      speed++;
-      m_graphics->setRunSpeed(speed);
+    case SDLK_UP: // Increase speed of moon
+      m_graphics->m_moon->increaseSpeed();
       break;
-    case SDLK_DOWN: // Decrease Speed 
-      speed--;
-      m_graphics->setRunSpeed(speed);
+    case SDLK_DOWN: // Decrease speed of moon
+      m_graphics->m_moon->decreaseSpeed();
+      break;
+    case SDLK_RIGHT: // Reverse Direction of moon
+      m_graphics->m_moon->reverseRotation();
+      break;
+    case SDLK_LEFT: // Start/Stop Moon
+      if(m_graphics->m_moon->getRotationalVelocity() != 0) 
+	m_graphics->m_moon->setPaused(true);
+      else
+	m_graphics->m_moon->setPaused(false);
       break;
     }
     
@@ -119,6 +143,29 @@ void Engine::Keyboard()
     if(m_event.key.keysym.sym == SDLK_UP)
       {}
     */
+  }
+}
+
+void Engine::Mouse() {
+  if(m_event.type == SDL_QUIT) {
+    m_running = false;
+  }
+  else if (m_event.type == SDL_MOUSEBUTTONUP)  {
+    /*switch(m_event.button) {
+    case SDL_BUTTON_LEFT: // Reverse planet direction
+       m_graphics->m_cube->reverseRotation();
+      break;
+    case SDL_BUTTON_RIGHT: // Reverse moon direction
+       m_graphics->m_moon->reverseRotation();
+      break;
+    }
+    */
+    if(m_event.button.button == SDL_BUTTON_LEFT) {
+       m_graphics->m_cube->reverseRotation();
+    }
+    else if (m_event.button.button == SDL_BUTTON_RIGHT) {
+       m_graphics->m_moon->reverseRotation();
+    }
   }
 }
 

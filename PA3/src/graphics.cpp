@@ -106,20 +106,16 @@ bool Graphics::Initialize(int width, int height)
   glDepthFunc(GL_LESS);
 
   // Other Init
-  paused = false;
   runSpeed = 1;
-
-  //m_moon->setOrbit(glm::vec3(0.0, 4.0, 0.0), glm::vec3(1.0f, 1.0f, 0.0f));
-
+  m_moon->setScale(0.6f);
+  
   return true;
 }
 
 void Graphics::Update(unsigned int dt)
 {
-  
   // Update the object
   m_cube->Update(dt);
-
   m_moon->Update(dt);
 }
 
@@ -136,16 +132,15 @@ void Graphics::Render()
   glUniformMatrix4fv(m_projectionMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetProjection())); 
   glUniformMatrix4fv(m_viewMatrix, 1, GL_FALSE, glm::value_ptr(m_camera->GetView())); 
 
-  
+  // Original line of code : for reference
+  //glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()) );  
   // Render the objects
-
-  //std::vector<glm::mat4> matrices;
+  // Moon
   const  GLfloat* modelMatrices = glm::value_ptr(m_moon->GetModel());
-  
   m_moon->Render();
-  //glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()) );
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, modelMatrices );
 
+  // Planet
   modelMatrices = glm::value_ptr(m_cube->GetModel());
   m_cube->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, modelMatrices );
@@ -195,32 +190,33 @@ std::string Graphics::ErrorString(GLenum error)
 // OTHER PUBLIC FUNCTIONS
 // ============================
 
+// For set of functions related to pause, refactor later
+// Bc it won't scale well, and implementation of
+// stop all objects is not ideal
+
 // Desc: Pauses all objects under Graphics instance
 void Graphics::pauseAll() {
-  paused = true;
   m_cube->setPaused(true);
+  m_moon->setPaused(true);
 }
 
 // Desc: Unpauses all objects
 void Graphics::unpauseAll() {
-  paused = false;
   m_cube->setPaused(false);
-}
-
-// Desc: Returns if graphics instance is paused
-bool Graphics::isPaused() {
-  return paused;
+  m_moon->setPaused(false);
 }
 
 void Graphics::setRunSpeed(float newSpeed) {
   if(newSpeed == 0)
     {
+      runSpeed = newSpeed;
       pauseAll();
       return;
     }
   unpauseAll();
   
   runSpeed = newSpeed;
-  m_cube->setRotationalVelocity(runSpeed); 
+  m_cube->setRotationalVelocity(runSpeed);
+  m_moon->setRotationalVelocity(runSpeed);
   
 }
