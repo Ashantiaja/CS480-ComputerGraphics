@@ -1,41 +1,7 @@
-# PA3 - Moons
+# PA4 - Blender and Model Loading
 
 ## Project Description
-Two cubes are rendered on the screen. One moves in a circle while the other orbits it. The orbit direction and speeds of the two can be changed independently of each other.
-
-### Program Controls
-
-Planet Cube :
-
-<kbd>W</kbd> : Increases speed of the main cube.
-
-<kbd>S</kbd> : Slows the speed of the main cube.
-
-<kbd>A</kbd> : Stops/Starts movement of the main cube.
-
-<kbd>D</kbd> : Reverses direction of the main cube.
-
-Left Mouse Button : Reverses direction of the main cube.
-
-
-Moon Cube :
-
-<kbd>&#x2191;</kbd> Up Arrow : Increases speed of the moon cube.
-
-<kbd>&#x2193;</kbd> Down Arrow : Decreases speed of the moon cube.
-
-<kbd>&#x2190;</kbd> Left Arrow : Stops/starts movement of the moon cube
-
-<kbd>&#x2192;</kbd> Right Arrow : Reverses direction of the moon cube
-
-Right Mouse Button : Reverses direction of the moon cube.
-
-
-Misc :
-
-<kbd>Z</kbd> Z : Stop all
-
-<kbd>X</kbd> X : Start all
+A board with four walls is rendered onto the screen. The program loads the .obj file for said board. 
 
 # Dependencies, Building, and Running
 
