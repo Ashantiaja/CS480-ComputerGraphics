@@ -1,3 +1,6 @@
+#ifndef SATELLITE_H
+#define SATELLITE_H
+
 /* This class inherits from object, but
    adds additional attributes that make it easier
    to configure orbit around another object
@@ -21,3 +24,5 @@ class Satellite : public Object {
   void Update(unsigned int dt);
   
 };
+
+#endif

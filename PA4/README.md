@@ -37,11 +37,6 @@ Misc :
 
 <kbd>X</kbd> X : Start all
 
-### Extra Credit
-Controls are provided for adjusting the speed of the moon under section Program Controls.
-Additionally, the moon is scaled at 0.6 of the size of the main planet cube.
-
-
 # Dependencies, Building, and Running
 
 ## Building and Running
@@ -55,12 +50,12 @@ mkdir build
 cd build
 cp ../makefile .
 make
-./test
+./test -m ../src/assets/board.obj
 ```
 <!-- ./test -f fragmentShader.txt -v vertexShader.txt -->
 Running:
 ```bash
-./test
+./test -m <filepathToObjFile>
 ```
 
 ## Dependency Instructions
