@@ -20,6 +20,7 @@ class Engine
     void Mouse();
     unsigned int getDT();
     long long GetCurrentTimeMillis();
+    Graphics* getGraphics();
   
   private:
     

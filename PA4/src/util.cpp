@@ -100,7 +100,6 @@ bool util::loadObj(char const* filepath, vector<glm::vec3> &o_vertices,
 	return false;
       }
 
-
     vertexIndices.push_back(vertexIndex[0]);
     vertexIndices.push_back(vertexIndex[1]);
     vertexIndices.push_back(vertexIndex[2]);
@@ -135,12 +134,24 @@ bool util::loadObj(char const* filepath, vector<glm::vec3> &o_vertices,
   }
   */
 
+  //  cout << "Vertex indices: " << vertexIndices.size() << endl
+  
   // Copy and Process vertices for openGL
   for(unsigned int i = 0; i < vertexIndices.size(); i++) {
+    //cout << i << endl;
     unsigned int vertexIndex = vertexIndices[i];
     glm::vec3 vert = vertices[vertexIndex-1];
     o_vertices.push_back(vert);
   }
+
+
+  /*  
+  cout << "o vertices" << endl;
+  for(unsigned int i = 0; i < o_vertices.size(); i++) {
+    cout << i << " " << o_vertices[i].x << " " << o_vertices[i].y << " " << o_vertices[i].z
+	 << endl;
+  }
+  */
 
   for(unsigned int i = 0; i < uvIndices.size(); i++) {
     unsigned int uvIndex = uvIndices[i];
@@ -151,7 +162,7 @@ bool util::loadObj(char const* filepath, vector<glm::vec3> &o_vertices,
   for(unsigned int i = 0; i < normalIndices.size(); i++) {
     unsigned int normalIndex = normalIndices[i];
     glm::vec3 norm = normals[normalIndex-1];
-    o_vertices.push_back(norm);
+    o_normals.push_back(norm);
   }
 
   fclose(fileptr);

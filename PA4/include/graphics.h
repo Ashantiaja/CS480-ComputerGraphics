@@ -11,6 +11,12 @@ using namespace std;
 #include "object.h"
 #include "satellite.h"
 
+struct BasicObject {
+  vector<glm::vec3> vertices;
+  vector<glm::vec2> uvs;
+  vector<glm::vec3> normals;
+};
+
 class Graphics
 {
   // keystrokes from engine directly effect
@@ -24,6 +30,7 @@ class Graphics
     void Update(unsigned int dt);
     void Render();
 
+    void setBoard(const BasicObject& x);
     void pauseAll();
     void unpauseAll();
     
@@ -42,6 +49,7 @@ class Graphics
     GLint m_viewMatrix;
     GLint m_modelMatrix;
 
+    BasicObject board;
     Object *m_cube;
     Satellite *m_moon;
 };

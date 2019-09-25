@@ -108,7 +108,8 @@ bool Graphics::Initialize(int width, int height)
   // Other Init
   runSpeed = 1;
   m_moon->setScale(0.6f);
-  
+
+    
   return true;
 }
 
@@ -134,6 +135,8 @@ void Graphics::Render()
 
   // Original line of code : for reference
   //glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, glm::value_ptr(m_cube->GetModel()) );  
+
+  /*
   // Render the objects
   // Moon
   const  GLfloat* modelMatrices = glm::value_ptr(m_moon->GetModel());
@@ -144,6 +147,16 @@ void Graphics::Render()
   modelMatrices = glm::value_ptr(m_cube->GetModel());
   m_cube->Render();
   glUniformMatrix4fv(m_modelMatrix, 1, GL_FALSE, modelMatrices );
+  */
+
+  // Board
+  //glm::vec3* start = &(board.vertices);
+  //  static GLuint VB;
+  //  glGenBuffers(1, &VB);
+  //glBindBuffer(GL_ARRAY_BUFFER, VB);
+  glBufferData(GL_ARRAY_BUFFER, board.vertices.size() * sizeof(glm::vec3), &(board.vertices[0]), GL_STATIC_DRAW);
+  //glDrawElements(GL_TRIANGLES, board.vertices.size(), GL_UNSIGNED_INT, 0);
+
 
   // Get any errors from OpenGL
   auto error = glGetError();
@@ -193,6 +206,17 @@ std::string Graphics::ErrorString(GLenum error)
 // For set of functions related to pause, refactor later
 // Bc it won't scale well, and implementation of
 // stop all objects is not ideal
+
+void Graphics::setBoard(const BasicObject& x) {
+  /*    for(unsigned int i = 0; i < x.vertices.size(); i++) {
+    cout << i << " " <<  x.vertices[i].x << " " << x.vertices[i].y << " " << x.vertices[i].z << endl;
+    }*/
+  //cout << x.vertices.size() << endl;
+  board.vertices = x.vertices;
+  board.uvs = x.uvs;
+  board.normals = x.normals;
+  
+}
 
 // Desc: Pauses all objects under Graphics instance
 void Graphics::pauseAll() {

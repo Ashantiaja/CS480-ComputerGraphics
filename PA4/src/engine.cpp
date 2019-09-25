@@ -185,3 +185,7 @@ long long Engine::GetCurrentTimeMillis()
   long long ret = t.tv_sec * 1000 + t.tv_usec / 1000;
   return ret;
 }
+
+Graphics* Engine::getGraphics() {
+  return m_graphics;
+}
