@@ -109,6 +109,11 @@ bool Graphics::Initialize(int width, int height)
   runSpeed = 1;
   m_moon->setScale(0.6f);
 
+  GLuint VB;
+  glGenBuffers(1, &VB);
+  glBindBuffer(GL_ARRAY_BUFFER, VB);
+  glBufferData(GL_ARRAY_BUFFER, board.vertices.size() * sizeof(glm::vec3), &(board.vertices[0]), GL_STATIC_DRAW);
+
     
   return true;
 }
@@ -154,8 +159,7 @@ void Graphics::Render()
   //  static GLuint VB;
   //  glGenBuffers(1, &VB);
   //glBindBuffer(GL_ARRAY_BUFFER, VB);
-  glBufferData(GL_ARRAY_BUFFER, board.vertices.size() * sizeof(glm::vec3), &(board.vertices[0]), GL_STATIC_DRAW);
-  //glDrawElements(GL_TRIANGLES, board.vertices.size(), GL_UNSIGNED_INT, 0);
+  glDrawElements(GL_TRIANGLES, board.vertices.size(), GL_UNSIGNED_INT, 0);
 
 
   // Get any errors from OpenGL
@@ -208,7 +212,7 @@ std::string Graphics::ErrorString(GLenum error)
 // stop all objects is not ideal
 
 void Graphics::setBoard(const BasicObject& x) {
-  /*    for(unsigned int i = 0; i < x.vertices.size(); i++) {
+  /*   for(unsigned int i = 0; i < x.vertices.size(); i++) {
     cout << i << " " <<  x.vertices[i].x << " " << x.vertices[i].y << " " << x.vertices[i].z << endl;
     }*/
   //cout << x.vertices.size() << endl;
