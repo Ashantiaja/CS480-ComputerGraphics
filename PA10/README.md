@@ -1,4 +1,4 @@
-# PA10 - Lighting
+# PA10 - Pinball
 
 ## Group Members
 Ashanti Cudiamat<br/><br/>
